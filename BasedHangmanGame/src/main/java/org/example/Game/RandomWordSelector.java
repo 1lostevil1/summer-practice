@@ -15,15 +15,15 @@ public class RandomWordSelector {
     }
 
     private void getWordsFromFile() {
-        StringBuilder strbldr = new StringBuilder();
+        StringBuilder str = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader("src\\main\\java\\org\\example\\Game\\words.txt"))) {
-            br.lines().forEach(strbldr::append);
+            br.lines().forEach(str::append);
         } catch (FileNotFoundException e) {
             System.out.print("\nFile not found!");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String wordsSeparate = strbldr.toString();
+        String wordsSeparate = str.toString();
         words = wordsSeparate.split(", ");
     }
 
