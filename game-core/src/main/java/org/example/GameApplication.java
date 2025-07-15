@@ -1,8 +1,8 @@
 package org.example;
 
-import org.example.Game.ConsoleReader;
-import org.example.Game.GameLogic;
-import org.example.Game.RandomWordSelector;
+import org.example.ConsoleReader;
+import org.example.GameLogic;
+import org.example.RandomWordSelector;
 
 /*
 Киреев Дмитрий 3к 91г
