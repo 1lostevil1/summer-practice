@@ -1,9 +1,6 @@
-package org.example.Game;
+package org.example;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Random;
 
 @SuppressWarnings("RegexpSinglelineJava")
@@ -15,15 +12,17 @@ public class RandomWordSelector {
     }
 
     private void getWordsFromFile() {
-        StringBuilder str = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader("src\\main\\java\\org\\example\\Game\\words.txt"))) {
-            br.lines().forEach(str::append);
-        } catch (FileNotFoundException e) {
-            System.out.print("\nFile not found!");
+        StringBuilder strbldr = new StringBuilder();
+        try (InputStream is = getClass().getResourceAsStream("/words.txt");
+             BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                strbldr.append(line);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String wordsSeparate = str.toString();
+        String wordsSeparate = strbldr.toString();
         words = wordsSeparate.split(", ");
     }
 

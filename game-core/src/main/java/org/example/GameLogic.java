@@ -1,4 +1,7 @@
-package org.example.Game;
+package org.example;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Set;
 
@@ -15,6 +18,8 @@ public class GameLogic {
 
     private final ConsoleReader consoleReader;
 
+    private static final Logger logger = LogManager.getLogger(GameLogic.class);
+
     public GameLogic(ConsoleReader consoleReader) {
         this.consoleReader = consoleReader;
     }
@@ -24,6 +29,9 @@ public class GameLogic {
     }
 
     public boolean start(String guessedWord) {
+
+        logger.info("Starting game with word: {}", guessedWord);
+
         if (guessedWord == null || guessedWord.isEmpty()) {
             return false;
         }
