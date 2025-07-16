@@ -1,6 +1,7 @@
 package org.example;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,16 +12,19 @@ class WordMaskOperatorTest {
 
     @BeforeEach
     void setup() {
+        // Перед каждым тестом создаётся новый объект и устанавливается слово "hello"
         operator = new WordMaskOperator();
         operator.setWord("hello");
     }
 
     @Test
+    @DisplayName("Маска инициализируется как строка из звездочек длиной слова")
     void setWord_initialMaskCorrect() {
         assertEquals("*****", operator.getMaskString());
     }
 
     @Test
+    @DisplayName("Проверка наличия буквы в слове: буквы есть в слове")
     void checkLetterInSet_returnsTrueIfLetterInWord() {
         assertTrue(operator.checkLetterInSet("h"));
         assertTrue(operator.checkLetterInSet("e"));
@@ -29,18 +33,20 @@ class WordMaskOperatorTest {
     }
 
     @Test
+    @DisplayName("Проверка наличия буквы в слове: буквы нет в слове")
     void checkLetterInSet_returnsFalseIfLetterNotInWord() {
         assertFalse(operator.checkLetterInSet("z"));
     }
 
     @Test
+    @DisplayName("Обновление маски открывает все совпадающие буквы")
     void updateMask_revealsCorrectLetters() {
         operator.updateMask("l");
-        // После открытия буквы 'l' маска должна выглядеть как "**ll*"
         assertEquals("**ll*", operator.getMaskString());
     }
 
     @Test
+    @DisplayName("Проверка добавления и проверки использованных букв")
     void inputLetterInSet_and_isLetterUsed() {
         assertFalse(operator.isLetterUsed("a"));
         operator.inputLetterInSet("a");
@@ -48,6 +54,7 @@ class WordMaskOperatorTest {
     }
 
     @Test
+    @DisplayName("Очистка состояния сбрасывает использованные буквы, счетчик и уникальные буквы слова")
     void clearBuffer_resetsUsedLettersAndCounters() {
         operator.inputLetterInSet("a");
         operator.updateMask("h");
