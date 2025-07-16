@@ -59,4 +59,9 @@ public class WordMaskOperator {
         numberGuessletter = 0;
     }
 
+    public String getMaskString() {
+        return String.join("", mask);
+    }
+
+
 }
