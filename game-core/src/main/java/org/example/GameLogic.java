@@ -66,6 +66,7 @@ public class GameLogic {
                     mistakesCount++;
                     System.out.print(">Missed, mistake " + mistakesCount + " out of "
                             + MAX_COUNT_MISTAKES + ".\n");
+                    System.out.print(HangmanVisual.getVisual(mistakesCount));
                     maskOperator.printMask();
                 }
             }
