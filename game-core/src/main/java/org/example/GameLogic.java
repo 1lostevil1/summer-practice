@@ -1,11 +1,14 @@
-package org.example.Game;
+package org.example;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Set;
 
 @SuppressWarnings("RegexpSinglelineJava")
 public class GameLogic {
-    private final RandomWordSelector wordSelector = new RandomWordSelector();
-    private final WordMaskOperator maskOperator = new WordMaskOperator();
+    private final RandomWordSelector wordSelector;
+    private final WordMaskOperator maskOperator ;
 
     private int mistakesCount;
     private String letter;
@@ -15,7 +18,18 @@ public class GameLogic {
 
     private final ConsoleReader consoleReader;
 
+    private static final Logger logger = LogManager.getLogger(GameLogic.class);
+
     public GameLogic(ConsoleReader consoleReader) {
+
+        this.consoleReader = consoleReader;
+        wordSelector = new RandomWordSelector();
+        maskOperator = new WordMaskOperator();
+    }
+
+    public GameLogic(ConsoleReader consoleReader,WordMaskOperator maskOperator, RandomWordSelector wordSelector) {
+        this.wordSelector = wordSelector;
+        this.maskOperator = maskOperator;
         this.consoleReader = consoleReader;
     }
 
@@ -24,6 +38,9 @@ public class GameLogic {
     }
 
     public boolean start(String guessedWord) {
+
+        logger.info("Starting game with word: {}", guessedWord);
+
         if (guessedWord == null || guessedWord.isEmpty()) {
             return false;
         }
@@ -58,6 +75,7 @@ public class GameLogic {
                     mistakesCount++;
                     System.out.print(">Missed, mistake " + mistakesCount + " out of "
                             + MAX_COUNT_MISTAKES + ".\n");
+                    System.out.print(HangmanVisual.getVisual(mistakesCount));
                     maskOperator.printMask();
                 }
             }

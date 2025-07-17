@@ -1,4 +1,4 @@
-package org.example.Game;
+package org.example;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -58,5 +58,10 @@ public class WordMaskOperator {
         wordUniqueLetters.clear();
         numberGuessletter = 0;
     }
+
+    public String getMaskString() {
+        return String.join("", mask);
+    }
+
 
 }
