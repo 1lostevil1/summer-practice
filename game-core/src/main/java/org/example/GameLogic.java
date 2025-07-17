@@ -7,8 +7,8 @@ import java.util.Set;
 
 @SuppressWarnings("RegexpSinglelineJava")
 public class GameLogic {
-    private final RandomWordSelector wordSelector = new RandomWordSelector();
-    private final WordMaskOperator maskOperator = new WordMaskOperator();
+    private final RandomWordSelector wordSelector;
+    private final WordMaskOperator maskOperator ;
 
     private int mistakesCount;
     private String letter;
@@ -21,6 +21,15 @@ public class GameLogic {
     private static final Logger logger = LogManager.getLogger(GameLogic.class);
 
     public GameLogic(ConsoleReader consoleReader) {
+
+        this.consoleReader = consoleReader;
+        wordSelector = new RandomWordSelector();
+        maskOperator = new WordMaskOperator();
+    }
+
+    public GameLogic(ConsoleReader consoleReader,WordMaskOperator maskOperator, RandomWordSelector wordSelector) {
+        this.wordSelector = wordSelector;
+        this.maskOperator = maskOperator;
         this.consoleReader = consoleReader;
     }
 
